@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
 from pathlib import Path
 
 import django_stubs_ext
+from decouple import config
+from dj_database_url import parse as db_url
 
 
 django_stubs_ext.monkeypatch()
@@ -30,7 +31,7 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=False, cast=bool)
 
 ALLOWED_HOSTS: list[str] = []
 
@@ -88,10 +89,9 @@ WSGI_APPLICATION = "recipes.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": config(
+        "DATABASE_URL", default=f"sqlite:///{BASE_DIR}/db.sqlite3", cast=db_url
+    )
 }
 
 

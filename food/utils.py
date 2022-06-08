@@ -14,3 +14,7 @@ def build_absolute_uri(
     info: graphene.ResolveInfo, file: Union[FieldFile, None]
 ) -> Union[str, None]:
     return info.context.build_absolute_uri(file.url) if file else None
+
+
+def get_total(a: float, b: float) -> float:
+    return a + b

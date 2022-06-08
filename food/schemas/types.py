@@ -15,7 +15,7 @@ class IngredientType(graphene_django.DjangoObjectType):
 class CuisineType(graphene_django.DjangoObjectType):
     class Meta:
         model = Cuisine
-    
+
     def resolve_banner(root, info: graphene.ResolveInfo) -> Union[str, None]:
         return build_absolute_uri(info, root.banner)
 

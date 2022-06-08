@@ -16,10 +16,10 @@ class FoodQuery(graphene.ObjectType):
         RecipeType, recipe_id=graphene.Int(), name=graphene.String()
     )
     ingredient = graphene.Field(
-        RecipeType, ingredient_id=graphene.Int(required=True)
+        IngredientType, ingredient_id=graphene.Int(required=True)
     )
     cuisine = graphene.Field(
-        RecipeType, cuisine_id=graphene.Int(required=True)
+        CuisineType, cuisine_id=graphene.Int(required=True)
     )
 
     # Lists
